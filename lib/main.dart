@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'PAS Mobile',
-      initialRoute: Routes.store,
+      initialRoute: Routes.login,
       getPages: Routes.myPages,
     );
   }

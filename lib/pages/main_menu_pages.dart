@@ -1,17 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pas_mobile/controller/main_menu_controller.dart';
 
-class MainMenuPages extends StatelessWidget {
-  const MainMenuPages({super.key});
+class MainMenuPage extends StatelessWidget {
+  MainMenuPage({super.key});
+
+  final menuController = Get.put(MainMenuController());
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('PAS Mobile'),
+    return Obx(
+      () => Scaffold(
+      body: IndexedStack(
+        index: menuController.selectedIndex.value,
+        children: menuController.listPages,
       ),
-      body: const Center(
-        child: Text('Selamat Datang di PAS Mobile'),
+  
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: menuController.selectedIndex.value,
+        onTap: menuController.changePage,
+        items: [
+          BottomNavigationBarItem(
+          icon: Icon(Icons.home), 
+          label: 'Home'),
+          BottomNavigationBarItem(
+          icon: Icon(Icons.history), 
+          label: 'Feat'),
+          BottomNavigationBarItem(
+          icon: Icon(Icons.person), 
+          label: 'Profile'),
+        ],
       ),
-    );
+    ));
   }
 }
